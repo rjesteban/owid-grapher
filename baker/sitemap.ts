@@ -1,7 +1,7 @@
 import { Post } from "../db/model/Post"
 import { Chart } from "../db/model/Chart"
 import { BAKED_BASE_URL, BAKED_GRAPHER_URL } from "../settings/serverSettings"
-import moment from "moment"
+import dayjs from "../clientUtils/dayjs"
 import * as db from "../db/db"
 import { countries } from "../clientUtils/countries"
 import urljoin from "url-join"
@@ -52,13 +52,13 @@ export const makeSitemap = async () => {
         .concat(
             posts.map((p) => ({
                 loc: urljoin(BAKED_BASE_URL, p.slug),
-                lastmod: moment(p.updated_at).format("YYYY-MM-DD"),
+                lastmod: dayjs(p.updated_at).format("YYYY-MM-DD"),
             }))
         )
         .concat(
             charts.map((c) => ({
                 loc: urljoin(BAKED_GRAPHER_URL, c.slug),
-                lastmod: moment(c.updatedAt).format("YYYY-MM-DD"),
+                lastmod: dayjs(c.updatedAt).format("YYYY-MM-DD"),
             }))
         ) as SitemapUrl[]
 
