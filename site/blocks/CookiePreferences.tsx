@@ -1,4 +1,3 @@
-import moment from "moment"
 import * as React from "react"
 import * as ReactDOM from "react-dom"
 import {
@@ -9,6 +8,7 @@ import {
     Preference,
     PreferenceType,
 } from "../../site/CookiePreferencesManager"
+import dayjs from "../../clientUtils/dayjs"
 import slugify from "slugify"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCheck } from "@fortawesome/free-solid-svg-icons/faCheck"
@@ -113,7 +113,7 @@ export const CookiePreferences = ({
             {date ? (
                 <div className="last-updated">
                     Preferences last updated:{" "}
-                    {moment(date, DATE_FORMAT).format("LL")}
+                    {dayjs(date, DATE_FORMAT).format("MMMM D, YYYY")}
                 </div>
             ) : (
                 <button

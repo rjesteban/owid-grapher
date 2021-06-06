@@ -1,11 +1,11 @@
 import React from "react"
-import moment from "moment"
 import { Head } from "./Head"
 import { SiteHeader } from "./SiteHeader"
 import { SiteFooter } from "./SiteFooter"
 import { TableOfContents } from "../site/TableOfContents"
 import { groupBy } from "../clientUtils/Util"
 import { PostRow } from "../clientUtils/owidTypes"
+import dayjs from "../clientUtils/dayjs"
 
 type Entry = Pick<PostRow, "title" | "slug" | "published_at">
 
@@ -15,7 +15,7 @@ export const EntriesByYearPage = (props: {
 }) => {
     const { baseUrl } = props
     const entriesByYear = groupBy(props.entries, (entry) =>
-        moment(entry.published_at as Date).year()
+        dayjs(entry.published_at as Date).year()
     )
 
     const years = Object.keys(entriesByYear).sort().reverse()
@@ -105,7 +105,7 @@ export const EntriesForYearPage = (props: {
 }) => {
     const { baseUrl, year } = props
     const entriesByYear = groupBy(props.entries, (entry) =>
-        moment(entry.published_at as Date).year()
+        dayjs(entry.published_at as Date).year()
     )
 
     const years = Object.keys(entriesByYear)

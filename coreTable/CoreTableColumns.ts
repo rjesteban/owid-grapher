@@ -28,7 +28,7 @@ import { EntityName, LegacyOwidRow } from "./OwidTableConstants" // todo: remove
 import { ErrorValue, ErrorValueTypes } from "./ErrorValues"
 import { getOriginalTimeColumnSlug } from "./OwidTableUtil"
 import { imemo } from "./CoreTableUtils"
-import moment from "moment"
+import dayjs from "../clientUtils/dayjs"
 import { OwidSource } from "./OwidSource"
 import { formatValue, TickFormattingOptions } from "../clientUtils/formatValue"
 import { LegacyVariableDisplayConfigInterface } from "../clientUtils/LegacyVariableDisplayConfigInterface"
@@ -675,8 +675,8 @@ class DateColumn extends DayColumn {
             dateToTimeCache.set(
                 val,
                 dateDiffInDays(
-                    moment.utc(val).toDate(),
-                    moment.utc("2020-01-21").toDate()
+                    dayjs.utc(val).toDate(),
+                    dayjs.utc("2020-01-21").toDate()
                 )
             )
         return dateToTimeCache.get(val)!
